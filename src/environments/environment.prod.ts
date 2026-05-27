@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
 
-  difyApiUrl: import.meta.env['NG_APP_DIFY_API_URL'],
-  difyApiKey: import.meta.env['NG_APP_DIFY_API_KEY']
+  difyApiUrl: 'https://api.dify.ai/v1/chat-messages',
+  difyApiKey: 'app-1rfUYK6MTh3ViWMzKE9bbhsL'
 };
