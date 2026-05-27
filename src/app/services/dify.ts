@@ -5,8 +5,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class Dify {
-  private apiUrl = 'environment.difyApiUrl';
-  private apiKey = 'environment.difyApiKey';
+  private apiUrl = environment.difyApiUrl;
+  private apiKey = environment.difyApiKey;
 
   async generateMealPlan(payload: any): Promise<string> {
     const response = await fetch(this.apiUrl, {
