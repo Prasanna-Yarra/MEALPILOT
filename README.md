@@ -82,6 +82,9 @@ Understands restaurant intent and recommends:
 
 ## ⚡ Multi-Agent AI Architecture
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/0b67c81f-7dd2-4d85-8dae-bfb9dc66f824" />
+
+
 MealPilot uses a modular AI orchestration workflow:
 
 * Meal Intelligence
@@ -117,53 +120,6 @@ MealPilot uses a modular AI orchestration workflow:
 
 ---
 
-# 📸 Demo Scenarios
-
-## 1️⃣ Smart Cooking
-
-**Input:**
-Paneer, tomatoes, wheat
-
-**Query:**
-Suggest high protein dinner
-
-**Output:**
-
-* smart meal recommendations
-* pantry utilization
-* grocery suggestions
-* cooking recommendation
-
----
-
-## 2️⃣ Grocery + Cooking Intelligence
-
-**Input:**
-No pantry ingredients
-
-**Query:**
-Healthy dinner ideas
-
-**Output:**
-MealPilot intelligently recommends:
-
-* groceries + cooking
-  instead of directly pushing food delivery.
-
----
-
-## 3️⃣ Dineout Intelligence
-
-**Query:**
-Suggest South Indian restaurants for dinner tonight
-
-**Output:**
-
-* contextual dineout suggestions
-* ambience-aware recommendations
-* budget-aware restaurant categories
-
----
 
 # 🧠 Why MealPilot?
 
