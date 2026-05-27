@@ -1,0 +1,799 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: advanced-chat
+  name: MealPilot AI
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.53@a0dfb462961a03c6a6415d4185043185b01017c64da93cf82a9e5ecaf59f8ed0
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: llm-source-1779638771759-target
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: '1779638771759'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1779638771759-source-1779719174518-target
+      selected: false
+      source: '1779638771759'
+      sourceHandle: source
+      target: '1779719174518'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1779719174518-source-1779639412855-target
+      selected: false
+      source: '1779719174518'
+      sourceHandle: source
+      target: '1779639412855'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1779639412855-source-1779719646570-target
+      selected: false
+      source: '1779639412855'
+      sourceHandle: source
+      target: '1779719646570'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1779719646570-source-1779726490888-target
+      source: '1779719646570'
+      sourceHandle: source
+      target: '1779726490888'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1779726490888-source-answer-target
+      source: '1779726490888'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1779632908715-source-llm-target
+      source: '1779632908715'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: User Input
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: Pantry Ingredients
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: pantry_items
+        - default: ''
+          hint: ''
+          label: Nutrition Goal
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: nutrition_goal
+        - default: ''
+          hint: ''
+          label: Cuisine
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: cuisine
+        - default: ''
+          hint: ''
+          label: Daily Budget
+          options: []
+          placeholder: ''
+          required: false
+          type: number
+          variable: budget
+        - default: ''
+          hint: ''
+          label: Cooking Time (minutes)
+          options: []
+          placeholder: ''
+          required: false
+          type: number
+          variable: cooking_time
+        - default: ''
+          hint: ''
+          label: Family Size
+          options: []
+          placeholder: ''
+          required: false
+          type: number
+          variable: family_size
+      height: 238
+      id: '1779632908715'
+      position:
+        x: 270.26791992016626
+        y: 178.96634822258784
+      positionAbsolute:
+        x: 270.26791992016626
+        y: 178.96634822258784
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-4o-mini
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_config:
+          jinja2_variables:
+          - value_selector:
+            - '1779632908715'
+            - pantry_items
+            variable: pantry_items
+          - value_selector:
+            - '1779632908715'
+            - nutrition_goal
+            variable: nutrition_goal
+          - value_selector:
+            - '1779632908715'
+            - cuisine
+            variable: cuisine
+          - value_selector:
+            - '1779632908715'
+            - budget
+            variable: budget
+          - value_selector:
+            - '1779632908715'
+            - cooking_time
+            variable: cooking_time
+          - value_selector:
+            - '1779632908715'
+            - family_size
+            variable: family_size
+          - value_selector:
+            - sys
+            - query
+            variable: query
+        prompt_template:
+        - edition_type: jinja2
+          id: 96315659-031c-4ff8-85ac-e05f4c2eee67
+          jinja2_text: "You are PantryPilot Meal Intelligence AI.\r\n\r\nYour PRIMARY\
+            \ responsibility is to understand the USER QUERY first.\r\n\r\nThe user\
+            \ query is the highest-priority signal.\r\n\r\nYou operate in TWO MODES:\r\
+            \n\r\n1. RECIPE INTENT MODE\r\nWhen the user explicitly requests a specific\
+            \ dish/recipe.\r\n\r\nExamples:\r\n- \"I want paneer butter masala\"\r\
+            \n- \"Need ingredients for biryani\"\r\n- \"How can I cook pasta?\"\r\n\
+            - \"Suggest groceries for dosa\"\r\n- \"I want high protein pasta\"\r\n\
+            \r\nBehavior:\r\n- Treat the requested recipe as the primary meal\r\n\
+            - Do NOT suggest unrelated alternative meals\r\n- Analyze pantry compatibility\r\
+            \n- Identify missing ingredients\r\n- Estimate pantry utilization\r\n\
+            - Minimize food waste\r\n\r\n2. DISCOVERY MODE\r\nWhen the user asks generally\
+            \ for meal ideas.\r\n\r\nExamples:\r\n- \"Suggest dinner\"\r\n- \"Healthy\
+            \ lunch ideas\"\r\n- \"High protein meals\"\r\n- \"Quick breakfast\"\r\
+            \n\r\nBehavior:\r\n- Suggest up to 2 meals\r\n- Prioritize pantry ingredient\
+            \ usage\r\n- Align with nutrition goals\r\n- Reduce food waste\r\n\r\n\
+            DO NOT:\r\n- recommend ordering food\r\n- recommend dineout\r\n- generate\
+            \ grocery optimization\r\n- generate restaurant suggestions\r\n- make\
+            \ final cook/order decisions\r\n- generate final UI response\r\n- hallucinate\
+            \ pantry ingredients\r\n\r\nINPUTS\r\n\r\nUser Query:\r\n{{ query }}\r\
+            \n\r\nPantry Ingredients:\r\n{{ pantry_items }}\r\n\r\nNutrition Goal:\r\
+            \n{{ nutrition_goal }}\r\n\r\nCuisine Preference:\r\n{{ cuisine }}\r\n\
+            \r\nBudget:\r\n₹{{ budget }}\r\n\r\nCooking Time Available:\r\n{{ cooking_time\
+            \ }} minutes\r\n\r\nFamily Size:\r\n{{ family_size }}\r\n\r\nCRITICAL\
+            \ RULES\r\n\r\n1. USER QUERY is the highest priority.\r\n\r\n2. NEVER\
+            \ assume ingredients exist unless explicitly present in pantry_items.\r\
+            \n\r\n3. If pantry_items is empty:\r\n- pantry utilization = 0%\r\n- all\
+            \ required ingredients become missing ingredients\r\n\r\n4. Pantry ingredients\
+            \ represent ingredients already available at home.\r\n\r\n5. Meals MUST\
+            \ primarily use pantry ingredients whenever possible.\r\n\r\n6. If additional\
+            \ ingredients are needed:\r\n- include them in missing_ingredients\r\n\
+            \r\n7. Do NOT invent pantry utilization percentages.\r\n\r\n8. Pantry\
+            \ utilization must reflect ACTUAL pantry ingredient usage only.\r\n\r\n\
+            9. Prioritize:\r\n- nutrition goals\r\n- ingredient reuse\r\n- low waste\r\
+            \n- quick preparation\r\n- practical cooking\r\n\r\n10. Keep responses\
+            \ concise.\r\n\r\n11. Maximum 2 meals in discovery mode.\r\n\r\n12. In\
+            \ recipe intent mode:\r\n- suggest ONLY the requested recipe\r\n- do NOT\
+            \ suggest alternatives unless explicitly asked\r\n\r\n13. If cooking_time\
+            \ is low:\r\n- prioritize simpler meals\r\n\r\n14. If nutrition_goal exists:\r\
+            \n- prioritize meals aligned with that goal\r\n\r\n15. If cuisine preference\
+            \ exists:\r\n- prioritize matching cuisine style\r\n\r\n16. If pantry\
+            \ is insufficient:\r\n- still provide meal analysis\r\n- clearly list\
+            \ missing ingredients\r\n\r\n17. Do NOT ask the user for missing fields\
+            \ again.\r\n\r\nOUTPUT FORMAT\r\n\r\nReturn ONLY valid JSON.\r\n\r\n{\r\
+            \n  \"mode\": \"\",\r\n  \"query_understanding\": \"\",\r\n  \"meals\"\
+            : [\r\n    {\r\n      \"meal_name\": \"\",\r\n      \"why_it_fits\": \"\
+            \",\r\n      \"prep_time\": \"\",\r\n      \"difficulty\": \"\",\r\n \
+            \     \"calories\": \"\",\r\n      \"protein\": \"\",\r\n      \"pantry_utilization\"\
+            : \"\",\r\n      \"ingredients_used\": [],\r\n      \"missing_ingredients\"\
+            : []\r\n    }\r\n  ],\r\n  \"overall_pantry_utilization\": \"\",\r\n \
+            \ \"food_waste_reduction\": {\r\n    \"ingredients_utilized\": [],\r\n\
+            \    \"waste_prevention_summary\": \"\"\r\n  }\r\n}\r\n\r\nmode values:\r\
+            \n- recipe_intent\r\n- discovery"
+          role: system
+          text: "You are PantryPilot AI, an intelligent AI kitchen, nutrition, grocery,\
+            \ and food decision assistant.\n\nYour responsibilities:\n- suggest meals\
+            \ based on pantry ingredients\n- optimize grocery shopping\n- recommend\
+            \ healthy meals\n- reduce food waste\n- suggest restaurant alternatives\
+            \ if ingredients are unavailable\n- intelligently decide whether the user\
+            \ should cook, order food, or dine out\n\nAlways prioritize:\n- maximum\
+            \ pantry ingredient usage\n- nutrition goals\n- budget optimization\n\
+            - minimal food waste\n- ingredient reuse across meals\n- quick and practical\
+            \ meal preparation\n\nIf too many ingredients are missing, cooking effort\
+            \ is too high, or time is limited, suggest ordering food or dineout instead.\n\
+            \nUser Pantry Ingredients (may be empty):\n{{pantry_items}}\n\nNutrition\
+            \ Goal (optional):\n{{nutrition_goal}}\n\nCuisine Preference (optional):\n\
+            {{cuisine}}\n\nDaily Budget (optional):\n₹{{budget}}\n\nCooking Time Available\
+            \ (optional):\n{{cooking_time}} minutes\nTasks:\n1. Analyze pantry ingredients\n\
+            2. Suggest suitable meals\n3. Calculate approximate pantry utilization\
+            \ percentage\n4. Identify missing ingredients\n5. Generate optimized grocery\
+            \ list\n6. Minimize food waste\n7. Prioritize ingredients likely to expire\n\
+            8. Recommend restaurant alternatives if necessary\n9. Suggest dineout\
+            \ if more convenient\n10. Provide fallback restaurant and dineout recommendations\
+            \ even if cooking is recommended\n\nDecision Logic:\n- If only a few ingredients\
+            \ are missing, recommend grocery purchase and cooking.\n- If many ingredients\
+            \ are missing, ingredients are unavailable, or cooking effort is high,\
+            \ recommend ordering food.\n- If dining out is more enjoyable or convenient\
+            \ for the situation, recommend dineout.\n\nOutput Format:\n\n## Recommended\
+            \ Meals\nFor each meal provide:\n- Meal name\n- Why it fits the user's\
+            \ goals\n- Pantry utilization percentage\n- Estimated preparation time\n\
+            - Difficulty level\n- Estimated calories\n- Estimated protein\n\n## Missing\
+            \ Ingredients\nList only missing items.\n\n## Optimized Grocery Suggestions\n\
+            Provide:\n- combined ingredient quantities\n- budget-friendly suggestions\n\
+            - estimated cost\n\n## Food Waste Reduction Insight\nExplain:\n- which\
+            \ pantry ingredients are being utilized\n- how waste is minimized\n- which\
+            \ ingredients are prioritized\n\n## Fallback Ordering Suggestions\nSuggest:\n\
+            - one similar restaurant meal option\n- one dineout alternative\n\n##\
+            \ AI Recommendation\nClearly recommend ONE:\n- Cook at home\n- Order food\n\
+            - Dineout\n\nExplain WHY based on:\n- pantry availability\n- time\n- budget\n\
+            - effort\n- convenience\n\nKeep responses:\n- practical\n- concise\n-\
+            \ intelligent\n- highly personalized\n- easy to understand.\n\n\nKeep\
+            \ responses:\n- practical\n- concise\n- intelligent\n- highly personalized\n\
+            - easy to understand\n\nEnsure the JSON is valid and properly formatted.\n\
+            \nAlso provide a final structured JSON summary for automation purposes.\n\
+            \nJSON Format:\nJSON Format:\n{\n  \"meals\": [\n    {\n      \"meal_name\"\
+            : \"\",\n      \"prep_time\": \"\",\n      \"difficulty\": \"\",\n   \
+            \   \"calories\": \"\",\n      \"protein\": \"\",\n      \"pantry_utilization\"\
+            : \"\"\n    }\n  ],\n  \"food_waste_reduction\": \"\",\n  \"overall_pantry_utilization\"\
+            : \"\"\n}\n\nDo NOT provide:\n- grocery optimization\n- restaurant suggestions\n\
+            - final cooking/order decision\n\nFocus ONLY on:\n- meals\n- nutrition\n\
+            - pantry usage\n- food waste reduction\n\nIMPORTANT BEHAVIOR RULES:\n\n\
+            - Do NOT ask users to repeat input fields unless absolutely necessary.\n\
+            - If pantry, budget, cuisine, or cooking time are missing, make intelligent\
+            \ assumptions.\n- Continue providing recommendations even with partial\
+            \ information.\n- Infer user intent naturally from conversational context.\n\
+            \nExamples:\n- Anniversary dinner → prioritize dineout or premium ordering\n\
+            - Quick dinner after work → prioritize convenience\n- Healthy weekday\
+            \ meals → prioritize cooking and nutrition\n\nFor celebration-related\
+            \ queries:\n- assume family size = 2 unless specified\n- assume moderate-to-premium\
+            \ budget\n- prioritize memorable experiences over pantry optimization\n\
+            - prefer dineout or premium food delivery recommendations\n\nNever respond\
+            \ by asking for all input fields again."
+        selected: false
+        title: Meal Intelligence Node
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: llm
+      position:
+        x: 760.3841602277541
+        y: 266.51876733740295
+      positionAbsolute:
+        x: 760.3841602277541
+        y: 266.51876733740295
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: '{{#1779726490888.text#}}'
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 101
+      id: answer
+      position:
+        x: 2745.475042249451
+        y: 237.7294095522895
+      positionAbsolute:
+        x: 2745.475042249451
+        y: 237.7294095522895
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - llm
+          - text
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-4o-mini
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 6729cab9-3849-4b19-a3c0-2b9c1b2701c8
+          role: system
+          text: "You are PantryPilot Grocery Optimization Agent.\n\nYour ONLY responsibility\
+            \ is to convert the Meal Intelligence output into a clean grocery list.\n\
+            \nMeal Intelligence Output:\n{{#llm.text#}}\n\nINPUTS:\nBudget:\n₹{{#1779632908715.budget#}}\n\
+            \nFamily Size:\n{{#1779632908715.family_size#}}\n\nCooking Time:\n{{#1779632908715.cooking_time#}}\
+            \ minutes\n\nNutrition goal:\n{{#1779632908715.nutrition_goal#}}\n\nCuisine:\n\
+            {{#1779632908715.cuisine#}}\n\nCRITICAL RULES:\n\n1. Do NOT suggest new\
+            \ meals.\n\n2. Do NOT change meal recommendations.\n\n3. Do NOT make final\
+            \ decisions like cook/order/dineout.\n\n4. Use ONLY missing_ingredients\
+            \ from Meal Intelligence Output.\n\n5. If Meal Intelligence says pantry\
+            \ utilization is 0%, keep it as 0%. Do not invent pantry ingredients.\n\
+            \n6. If there are no missing ingredients:\n- optimized_grocery_list must\
+            \ be []\n- estimated_total_cost must be \"₹0\"\n- grocery_required must\
+            \ be false\n\n7. If missing ingredients exist:\n- grocery_required must\
+            \ be true\n- add them to optimized_grocery_list\n\n8. Do NOT add unrelated\
+            \ ingredients like chicken, quinoa, broccoli, etc. unless they appear\
+            \ in Meal Intelligence missing_ingredients.\n\n9. Quantities should be\
+            \ practical for family_size.\n\n10. Keep grocery list maximum 6 items.\n\
+            \n11. Prefer budget-friendly Indian grocery assumptions.\n\n12. Estimate\
+            \ prices in Indian Rupees only.\n\n13. If ingredient is a basic staple\
+            \ like spices, oil, salt:\n- keep quantity small\n- mark priority as \"\
+            medium\" unless essential\n\n14. If ingredient is required for main meal\
+            \ structure:\n- mark priority as \"high\"\n\n15. Return ONLY valid JSON.\n\
+            No markdown.\nNo explanations.\nNo code blocks.\n\nOUTPUT JSON FORMAT:\n\
+            \n{\n  \"grocery_required\": false,\n  \"optimized_grocery_list\": [\n\
+            \    {\n      \"item\": \"\",\n      \"quantity\": \"\",\n      \"estimated_price\"\
+            : \"\",\n      \"priority\": \"\"\n    }\n  ],\n  \"estimated_total_cost\"\
+            : \"\",\n  \"waste_reduction_tips\": []\n}"
+        selected: false
+        title: Grocery Optimization Agent
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1779638771759'
+      position:
+        x: 1189.9559938295379
+        y: 256.48382126085954
+      positionAbsolute:
+        x: 1189.9559938295379
+        y: 256.48382126085954
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1779638771759'
+          - text
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-4o-mini
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 434910bd-8aed-4d8d-b553-cc81d22c9e8d
+          role: system
+          text: "You are PantryPilot Decision Intelligence.\n\nYour ONLY responsibility\
+            \ is to choose the final action.\n\nYou must decide ONE:\n- Cook at Home\n\
+            - Order Groceries + Cook\n- Order Food\n- Dineout\n\nDO NOT:\n- generate\
+            \ new meals\n- generate grocery lists\n- generate fallback foods\n- rewrite\
+            \ previous node outputs\n- invent pantry ingredients\n- invent ingredient\
+            \ availability\n\nINPUTS\n\nMeal Intelligence Output:\n{{#llm.text#}}\n\
+            \nGrocery Optimization Output:\n{{#1779638771759.text#}}\nIngredient Availability\
+            \ Analysis:\n{{#1779719174518.text#}}\n\n\nUser Pantry Ingredients:\n\
+            {{#1779632908715.pantry_items#}}\nUser Query:\n{{#sys.query#}}\n\nNutrition\
+            \ Goal:\n{{#1779632908715.nutrition_goal#}}\n\nCuisine Preference:\n{{#1779632908715.cuisine#}}\n\
+            \nBudget:\n₹{{#1779632908715.budget#}}\n\nCooking Time:\n{{#1779632908715.cooking_time#}}\
+            \ minutes\n\nFamily Size:\n{{#1779632908715.family_size#}}\n\nCORE RULES\n\
+            \n1. pantry_items means ingredients already available at home.\n\n2. If\
+            \ pantry_items is empty:\n- pantry sufficiency is low\n- pantry_utilization\
+            \ must be 0%\n- NEVER choose \"Cook at Home\"\n- choose \"Order Groceries\
+            \ + Cook\" if grocery availability is practical\n- choose \"Order Food\"\
+            \ only if cooking practicality is low\n\n3. Empty pantry does NOT automatically\
+            \ mean Order Food.\n\n4. Swiggy Food is LAST fallback.\n\n5. Do NOT recommend\
+            \ Order Food if:\n- grocery_required = true\n- ingredients are easily\
+            \ available\n- cooking_practical = true\n\n6. Choose \"Cook at Home\"\
+            \ ONLY IF:\n- pantry utilization is high\n- grocery_required is false\
+            \ or minimal\n- cooking time fits user's cooking_time\n- cooking_practical\
+            \ = true\n\n7. Choose \"Order Groceries + Cook\" IF:\n- pantry is empty/low\
+            \ OR missing ingredients exist\n- ingredients are easily available\n-\
+            \ cooking_practical = true\n- grocery ordering completes the meal\n\n\
+            8. Choose \"Order Food\" ONLY IF:\n- critical ingredients are unavailable\n\
+            - cooking_practical = false\n- feasibility score is low\n- too many substitutions\
+            \ are needed\n\n9. Choose \"Dineout\" ONLY IF:\n- user query indicates\
+            \ occasion/date/birthday/anniversary/celebration\n- or user explicitly\
+            \ asks dineout/restaurant experience\n\n10. Basic items like oil, salt,\
+            \ spices, onion, tomato, rice, wheat, paneer, dal, milk, curd are usually\
+            \ grocery-orderable and should not trigger Order Food.\n\n11. If final_decision\
+            \ is NOT \"Dineout\":\n- dineout_suggestions must be []\n\n\n\nRESTAURANT\
+            \ / DINEOUT INTENT RULE\n\nIf user query contains any of:\n- restaurants\n\
+            - restaurant\n- cafes\n- cafe\n- dineout\n- dining\n- places to eat\n\
+            - where to eat\n- dinner outside\n- lunch outside\n- tonight outside\n\
+            \nThen final_decision MUST be:\n\"Dineout\"\n\nresponse_type MUST be:\n\
+            \"dineout\"\n\nswiggy_food_needed MUST be false\ncooking_practical MUST\
+            \ be false\ninstamart_feasibility MUST be false\n\ndineout_suggestions\
+            \ MUST contain exactly 3 items.\n\nDo NOT return only a reason.\nDo NOT\
+            \ leave dineout_suggestions empty.\nDo NOT recommend Swiggy Food fallback.\n\
+            Do NOT recommend grocery ordering.\n\nFor each dineout_suggestions item,\
+            \ generate realistic category-based suggestions, not exact restaurant\
+            \ names unless known.\n\nExample for:\n\"suggest some south indian restaurants\
+            \ for dinner tonight\"\n\nReturn:\n\"dineout_suggestions\": [\n  {\n \
+            \   \"place_type\": \"South Indian family restaurant\",\n    \"area_suggestion\"\
+            : \"Popular nearby dining area or main road with family restaurants\"\
+            ,\n    \"estimated_budget\": \"₹300-₹600 for 2\",\n    \"ambience\": \"\
+            Casual family dining\",\n    \"why_recommended\": \"Good for dosa, idli,\
+            \ vada, South Indian meals, and quick dinner.\"\n  },\n  {\n    \"place_type\"\
+            : \"Andhra meals restaurant\",\n    \"area_suggestion\": \"Busy local\
+            \ food street or commercial area\",\n    \"estimated_budget\": \"₹400-₹700\
+            \ for 2\",\n    \"ambience\": \"Simple, filling, regional dining\",\n\
+            \    \"why_recommended\": \"Best for spicy meals, dal, rasam, curries,\
+            \ rice, and satisfying dinner.\"\n  },\n  {\n    \"place_type\": \"Premium\
+            \ South Indian cafe\",\n    \"area_suggestion\": \"Mall or premium cafe\
+            \ zone nearby\",\n    \"estimated_budget\": \"₹500-₹900 for 2\",\n   \
+            \ \"ambience\": \"Clean, comfortable, casual premium\",\n    \"why_recommended\"\
+            : \"Good for ghee roast dosa, filter coffee, uttapam, and relaxed dinner.\"\
+            \n  }\n]\n\nMaximum 3 suggestions.\n\nSCORING RULES\n\nReturn scores from\
+            \ 1 to 10.\n\n- convenience: practical ease of final recommendation\n\
+            - cost_efficiency: lower cost = higher score\n- healthiness: nutrition\
+            \ alignment\n- time_efficiency: speed of getting meal ready\n\nOUTPUT\
+            \ FORMAT\n\nReturn ONLY valid JSON.\nNo markdown.\nNo explanations.\n\
+            No code block.\n\n{\n  \"final_decision\": \"\",\n  \"response_type\"\
+            : \"\",\n  \"reason\": \"\",\n  \"instamart_feasibility\": true,\n  \"\
+            swiggy_food_needed\": false,\n  \"cooking_practical\": true,\n\"dineout_suggestions\"\
+            : [\n  {\n    \"place_type\": \"\",\n    \"area_suggestion\": \"\",\n\
+            \    \"estimated_budget\": \"\",\n    \"ambience\": \"\",\n    \"why_recommended\"\
+            : \"\"\n  }\n],\n  \"scores\": {\n    \"convenience\": 0,\n    \"cost_efficiency\"\
+            : 0,\n    \"healthiness\": 0,\n    \"time_efficiency\": 0\n  }\n}\n\n\
+            response_type mapping:\n- Cook at Home = cook\n- Order Groceries + Cook\
+            \ = grocery\n- Order Food = order_food\n- Dineout = dineout"
+        selected: true
+        title: Decision Intelligence Agent
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1779639412855'
+      position:
+        x: 1836.9284824238227
+        y: 163.99550316578566
+      positionAbsolute:
+        x: 1836.9284824238227
+        y: 163.99550316578566
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - llm
+          - text
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-4o-mini
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 44d5518e-ba32-48ee-bffd-6e68dc7024c2
+          role: system
+          text: "{{#llm.text#}}\n{{#1779638771759.text#}}\n\nYou are PantryPilot Ingredient\
+            \ Availability Intelligence.\n\nYour ONLY responsibility is:\n\n1. Analyze\
+            \ grocery ingredient availability\n2. Classify ingredient availability\n\
+            3. Suggest substitutions\n4. Estimate cooking feasibility\n\nDO NOT:\n\
+            - recommend ordering food\n- recommend dineout\n- generate meals\n- change\
+            \ grocery lists\n- make final decisions\n\nINPUTS\n\nMeal Intelligence\
+            \ Output:\n{{#llm.text#}}\n\nGrocery Optimization Output:\n{{#1779638771759.text#}}\n\
+            \nCRITICAL RULES\n\n1. Use ONLY ingredients from optimized_grocery_list.\n\
+            \n2. Never invent new ingredients.\n\n3. Assume common Indian grocery\
+            \ items are usually available on Instamart.\n\nExamples of COMMON ingredients:\n\
+            - onions\n- tomatoes\n- paneer\n- rice\n- wheat\n- milk\n- curd\n- spices\n\
+            - oil\n- bread\n- eggs\n- potatoes\n\n4. Mark ingredients as \"possibly_unavailable\"\
+            \ ONLY IF:\n- specialty ingredient\n- imported ingredient\n- rare ingredient\n\
+            - seasonal ingredient\n\n5. If ingredient is common:\n- classify as easily_available\n\
+            \n6. Suggest substitutions only when reasonable.\n\nExample:\n- paneer\
+            \ → tofu\n- spinach → methi\n- broccoli → beans\n\n7. cooking_feasibility_score\
+            \ rules:\n- 8-10:\n  most ingredients available\n- 5-7:\n  some substitutions\
+            \ needed\n- 1-4:\n  critical ingredients unavailable\n\n8. This node does\
+            \ NOT decide:\n- cook\n- order food\n- dineout\n\n9. Keep reasoning concise.\n\
+            \n10. Return ONLY valid JSON.\n\nOUTPUT FORMAT\n\n{\n  \"easily_available\"\
+            : [],\n  \"possibly_unavailable\": [],\n  \"critical_missing_ingredients\"\
+            : [],\n  \"substitutions\": [\n    {\n      \"original\": \"\",\n    \
+            \  \"substitute\": \"\"\n    }\n  ],\n  \"cooking_feasibility_score\"\
+            : 0,\n  \"cooking_practical\": true\n}"
+        selected: false
+        title: Ingredient Availability Checker
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1779719174518'
+      position:
+        x: 1528.737378489689
+        y: 266.51876733740295
+      positionAbsolute:
+        x: 1528.737378489689
+        y: 266.51876733740295
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - llm
+          - text
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-4o-mini
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: dc4917c7-83e3-47bd-818e-3186aa5194d5
+          role: system
+          text: "Meal Intelligence Output:\n{{#llm.text#}}\n\nGrocery Optimization\
+            \ Output:\n{{#1779638771759.text#}}\n\nIngredient Availability Checker:\n\
+            {{#1779719174518.text#}}\n\nDecision Intelligence Output:\n{{#1779639412855.text#}}\n\
+            \nYou are PantryPilot Swiggy Food Fallback Intelligence.\n\nYour ONLY\
+            \ responsibility is to generate realistic food delivery recommendations\
+            \ ONLY WHEN final_decision is \"Order Food\".\n\nDO NOT:\n- generate grocery\
+            \ lists\n- suggest cooking\n- generate meals for cooking\n- change the\
+            \ final decision\n- reinterpret pantry logic\n- generate dineout recommendations\n\
+            \nINPUTS\n\nUser Query:\n{{#sys.query#}}\n\nCuisine Preference:\n{{#1779632908715.cuisine#}}\n\
+            \nBudget:\n₹{{#1779632908715.budget#}}\n\nFamily Size:\n{{#1779632908715.family_size#}}\n\
+            \nNutrition Goal:\n{{#1779632908715.nutrition_goal#}}\n\nMeal Intelligence\
+            \ Output:\n{{#llm.text#}}\n\nGrocery Optimization Output:\n{{#1779638771759.text#}}\n\
+            \nIngredient Availability Output:\n{{#1779719174518.text#}}\n\nDecision\
+            \ Intelligence Output:\n{{#1779639412855.text#}}\n\nCRITICAL RULES\n\n\
+            1. Read Decision Intelligence Output carefully.\n\n2. If final_decision\
+            \ is NOT exactly \"Order Food\":\nreturn exactly:\n{\n  \"fallback_food\"\
+            : []\n}\n\n3. If response_type is NOT \"order_food\":\nreturn exactly:\n\
+            {\n  \"fallback_food\": []\n}\n\n4. Do NOT generate fallback_food for:\n\
+            - Dineout\n- Cook at Home\n- Order Groceries + Cook\n\n5. Recommendations\
+            \ should feel realistic for Swiggy Food delivery.\n\n6. Prioritize:\n\
+            - convenience\n- nutrition alignment\n- budget suitability\n- cuisine\
+            \ preference\n- family size\n\n7. If nutrition_goal exists:\n- suggest\
+            \ healthier delivery options.\n\n8. If budget is low:\n- prioritize affordable\
+            \ meals.\n\n9. If family_size > 1:\n- suggest family-friendly combinations.\n\
+            \n10. Maximum 3 food recommendations.\n\n11. Avoid generic suggestions\
+            \ like:\n- pizza\n- burger\nunless user explicitly asks for them.\n\n\
+            12. Do NOT suggest restaurant areas or dineout places.\n\nOUTPUT FORMAT\n\
+            \nReturn ONLY valid JSON.\nNo markdown.\nNo explanations.\nNo extra text.\n\
+            \n{\n  \"fallback_food\": [\n    {\n      \"meal_name\": \"\",\n     \
+            \ \"restaurant_type\": \"\",\n      \"estimated_cost\": \"\",\n      \"\
+            why_recommended\": \"\",\n      \"healthiness\": \"\"\n    }\n  ]\n}"
+        selected: false
+        title: SWIGGY FOOD FALLBACK
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1779719646570'
+      position:
+        x: 2126.7424158298113
+        y: 232.76071468328902
+      positionAbsolute:
+        x: 2126.7424158298113
+        y: 232.76071468328902
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1779719646570'
+          - text
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-4o-mini
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 4f85c023-1df4-4bbe-be12-47cb9c47e23d
+          role: system
+          text: "You are PantryPilot JSON Formatter.\n\nYour ONLY responsibility is\
+            \ to merge previous node outputs into ONE clean frontend-ready JSON response.\n\
+            \nDO NOT:\n- generate new meals\n- generate new grocery items\n- change\
+            \ final decisions\n- reinterpret pantry logic\n- reinterpret ingredient\
+            \ availability\n- invent data\n- generate additional reasoning\n- replace\
+            \ dineout_suggestions with fallback_food\n- replace fallback_food with\
+            \ dineout_suggestions\n\nINPUTS\n\nMeal Intelligence:\n{{#llm.text#}}\n\
+            \nGrocery Optimization:\n{{#1779638771759.text#}}\n\nAvailability Analysis:\n\
+            {{#1779719174518.text#}}\n\nDecision Analysis:\n{{#1779639412855.text#}}\n\
+            \nSwiggy Food Fallback Analysis:\n{{#1779719646570.text#}}\n\nCRITICAL\
+            \ RULES\n\n1. Preserve final_decision from Decision Analysis exactly.\n\
+            \n2. Preserve response_type from Decision Analysis exactly.\n\n3. Preserve\
+            \ reason from Decision Analysis.\n\n4. If final_decision = \"Dineout\"\
+            :\n- ui_sections.show_dineout = true\n- ui_sections.show_meals = false\n\
+            - ui_sections.show_grocery_cart = false\n- ui_sections.show_fallback_food\
+            \ = false\n- dineout_suggestions must be copied from Decision Analysis\n\
+            - fallback_food must be []\n\n5. If final_decision = \"Order Food\":\n\
+            - ui_sections.show_fallback_food = true\n- ui_sections.show_dineout =\
+            \ false\n- ui_sections.show_meals = false\n- ui_sections.show_grocery_cart\
+            \ = false\n- fallback_food must be copied from Swiggy Food Fallback Analysis\n\
+            - dineout_suggestions must be []\n\n6. If final_decision = \"Order Groceries\
+            \ + Cook\":\n- ui_sections.show_meals = true\n- ui_sections.show_grocery_cart\
+            \ = true\n- ui_sections.show_fallback_food = false\n- ui_sections.show_dineout\
+            \ = false\n- meals must be copied from Meal Intelligence\n- grocery_cart\
+            \ must be copied from Grocery Optimization\n- fallback_food must be []\n\
+            - dineout_suggestions must be []\n\n7. If final_decision = \"Cook at Home\"\
+            :\n- ui_sections.show_meals = true\n- ui_sections.show_grocery_cart =\
+            \ false\n- ui_sections.show_fallback_food = false\n- ui_sections.show_dineout\
+            \ = false\n- meals must be copied from Meal Intelligence\n- grocery_cart\
+            \ must be []\n- fallback_food must be []\n- dineout_suggestions must be\
+            \ []\n\n8. Never invent pantry ingredients.\n\n9. Never invent restaurant/food\
+            \ suggestions.\n\n10. If a source field is missing, use empty string \"\
+            \" or empty array [].\n\n11. Keep response concise.\n\n12. Return ONLY\
+            \ valid JSON.\nNo markdown.\nNo explanations.\nNo code blocks.\nNo extra\
+            \ text.\n\nOUTPUT FORMAT\n\n{\n  \"response_type\": \"\",\n  \"final_decision\"\
+            : \"\",\n  \"reason\": \"\",\n\n  \"ui_sections\": {\n    \"show_meals\"\
+            : false,\n    \"show_grocery_cart\": false,\n    \"show_fallback_food\"\
+            : false,\n    \"show_dineout\": false,\n    \"show_scores\": true\n  },\n\
+            \n  \"instamart_feasibility\": true,\n  \"missing_critical_ingredients\"\
+            : false,\n\n  \"meals\": [\n    {\n      \"name\": \"\",\n      \"why_it_fits\"\
+            : \"\",\n      \"prep_time\": \"\",\n      \"difficulty\": \"\",\n   \
+            \   \"calories\": \"\",\n      \"protein\": \"\",\n      \"pantry_utilization\"\
+            : \"\"\n    }\n  ],\n\n  \"grocery_cart\": [\n    {\n      \"item\": \"\
+            \",\n      \"quantity\": \"\",\n      \"priority\": \"\",\n      \"available_on_instamart\"\
+            : true,\n      \"substitution_item\": \"\"\n    }\n  ],\n\n  \"fallback_food\"\
+            : [\n    {\n      \"meal_name\": \"\",\n      \"estimated_cost\": \"\"\
+            ,\n      \"why_recommended\": \"\"\n    }\n  ],\n\n  \"dineout_suggestions\"\
+            : [\n    {\n      \"place_type\": \"\",\n      \"area_suggestion\": \"\
+            \",\n      \"estimated_budget\": \"\",\n      \"ambience\": \"\",\n  \
+            \    \"why_recommended\": \"\"\n    }\n  ],\n\n  \"scores\": {\n    \"\
+            convenience\": 0,\n    \"cost_efficiency\": 0,\n    \"healthiness\": 0,\n\
+            \    \"time_efficiency\": 0\n  },\n\n  \"summary\": {\n    \"pantry_utilization\"\
+            : \"\",\n    \"recommended_action_summary\": \"\"\n  }\n}"
+        selected: false
+        structured_output_enabled: true
+        title: Format Response
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1779726490888'
+      position:
+        x: 2445.475042249451
+        y: 237.7294095522895
+      positionAbsolute:
+        x: 2445.475042249451
+        y: 237.7294095522895
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -879.3478363976794
+      y: 23.19160660652875
+      zoom: 0.6350211168961813
+  rag_pipeline_variables: []
