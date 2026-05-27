@@ -197,7 +197,7 @@ MealPilot combines all of them into one:
 ## 1. Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/mealpilot.git
+git clone [https://github.com/yourusername/mealpilot.git](https://github.com/Prasanna-Yarra/MEALPILOT.git)
 cd mealpilot
 ```
 
