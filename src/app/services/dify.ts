@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Dify {
-  private apiUrl = 'YOUR_DIFY_URL';
-  private apiKey = 'YOUR_DIFY_KEY';
+  private apiUrl = 'environment.difyApiUrl';
+  private apiKey = 'environment.difyApiKey';
 
   async generateMealPlan(payload: any): Promise<string> {
     const response = await fetch(this.apiUrl, {
