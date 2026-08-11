@@ -10,6 +10,7 @@ import { SwiggyFallback } from '../../components/swiggy-fallback/swiggy-fallback
 import { Dify } from '../../services/dify';
 
 @Component({
+  standalone: true,
   selector: 'app-dashboard',
   imports: [
     DecisionCard,
